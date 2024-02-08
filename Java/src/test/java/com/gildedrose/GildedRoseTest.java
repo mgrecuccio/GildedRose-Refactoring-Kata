@@ -71,6 +71,8 @@ class GildedRoseTest {
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 15, 80) };
         GildedRose app = new GildedRose(items);
 
+        app.updateQuality();
+
         assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
         assertEquals(80, app.items[0].quality);
         assertEquals(15, app.items[0].sellIn);
@@ -130,5 +132,16 @@ class GildedRoseTest {
 
         assertEquals(0, app.items[0].quality);
         assertEquals(-2, app.items[0].sellIn);
+    }
+
+    @Test
+    public void testThatBackstageDoesNotExceedTheMaxQuality() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 9, 49) };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(50, app.items[0].quality);
+        assertEquals(8, app.items[0].sellIn);
     }
 }
