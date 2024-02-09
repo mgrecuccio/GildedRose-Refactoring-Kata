@@ -11,7 +11,8 @@ public class ItemProcessorFactory {
     private final static List<ItemProcessor> processors = Arrays.asList(
         new SulfurasProcessor(),
         new BackstageProcessor(),
-        new AgedBrieProcessor()
+        new AgedBrieProcessor(),
+        new ConjuredProcessor()
     );
 
     public static ItemProcessor getProcessor(Item item) {

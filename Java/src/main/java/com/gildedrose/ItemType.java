@@ -6,7 +6,9 @@ public enum ItemType {
 
     LEGEND("Sulfuras"),
 
-    BACKSTAGE("Backstage passes");
+    BACKSTAGE("Backstage passes"),
+
+    CONJURED("Conjured");
 
     private final String itemPrefix;
 
