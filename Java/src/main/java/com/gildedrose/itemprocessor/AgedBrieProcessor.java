@@ -1,12 +1,13 @@
 package com.gildedrose.itemprocessor;
 
 import com.gildedrose.Item;
+import com.gildedrose.ItemType;
 
-public class AgedBrieProcessor extends ItemProcessor {
+public class AgedBrieProcessor implements ItemProcessor {
 
     @Override
     public void accept(Item item) {
-        if (canQualityIncrease(item.quality)) {
+        if (ItemProcessor.canQualityIncrease(item.quality)) {
             item.quality++;
             doubleAmeliorationIfNeeded(item);
         }
@@ -14,8 +15,13 @@ public class AgedBrieProcessor extends ItemProcessor {
     }
 
     private void doubleAmeliorationIfNeeded(Item item) {
-        if (hasSellDatePassed(item.sellIn)) {
+        if (ItemProcessor.hasSellDatePassed(item.sellIn)) {
             item.quality++;
         }
+    }
+
+    @Override
+    public boolean handle(String itemName) {
+        return itemName.contains(ItemType.AGED_BRIE.getItemPrefix());
     }
 }

@@ -2,16 +2,12 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.function.Consumer;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
 
     @Test
-    void foo() {
+    void testThatTheExpectedItemIsProcessed() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -97,6 +93,7 @@ class GildedRoseTest {
 
         app.updateQuality();
 
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(21, app.items[0].quality);
         assertEquals(11, app.items[0].sellIn);
     }
@@ -108,6 +105,7 @@ class GildedRoseTest {
 
         app.updateQuality();
 
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(22, app.items[0].quality);
         assertEquals(8, app.items[0].sellIn);
     }
@@ -119,17 +117,19 @@ class GildedRoseTest {
 
         app.updateQuality();
 
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(23, app.items[0].quality);
         assertEquals(3, app.items[0].sellIn);
     }
 
     @Test
-    public void testThatBackstageQualityIsZeroWhenAfterSellDate() {
+    public void testThatBackstageQualityIsZeroAfterSellDate() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20) };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
 
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(0, app.items[0].quality);
         assertEquals(-2, app.items[0].sellIn);
     }
@@ -141,6 +141,7 @@ class GildedRoseTest {
 
         app.updateQuality();
 
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(50, app.items[0].quality);
         assertEquals(8, app.items[0].sellIn);
     }

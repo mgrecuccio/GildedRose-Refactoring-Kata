@@ -2,11 +2,11 @@ package com.gildedrose.itemprocessor;
 
 import com.gildedrose.Item;
 
-public class GenericItemProcessor extends ItemProcessor {
+public class GenericItemProcessor implements ItemProcessor {
 
     @Override
     public void accept(Item item) {
-        if (canQualityDecrease(item.quality)) {
+        if (ItemProcessor.canQualityDecrease(item.quality)) {
             item.quality--;
             doubleDeteriorationIfNeeded(item);
         }
@@ -14,7 +14,7 @@ public class GenericItemProcessor extends ItemProcessor {
     }
 
     private void doubleDeteriorationIfNeeded(Item item) {
-        if (hasSellDatePassed(item.sellIn)) {
+        if (ItemProcessor.hasSellDatePassed(item.sellIn)) {
             item.quality--;
         }
     }
