@@ -1,6 +1,5 @@
 package com.gildedrose.itemprocessor;
 
-import com.gildedrose.Item;
 import com.gildedrose.exception.InvalidItemNameException;
 
 import java.util.Arrays;
@@ -15,18 +14,12 @@ public class ItemProcessorFactory {
         new ConjuredProcessor()
     );
 
-    public static ItemProcessor getProcessor(Item item) {
-        final String itemName = item.name;
-        validateItemName(itemName);
+    public static ItemProcessor getProcessor(String itemName) {
+        if(itemName == null || itemName.isEmpty()) throw new InvalidItemNameException("Invalid item name");
 
         return processors.stream()
             .filter(p -> p.handle(itemName))
             .findFirst()
             .orElseGet(() -> new GenericItemProcessor());
-    }
-
-    private static void validateItemName(String itemName) {
-        if (itemName == null || itemName.isEmpty())
-            throw new InvalidItemNameException("The item name must not be null or empty.");
     }
 }
